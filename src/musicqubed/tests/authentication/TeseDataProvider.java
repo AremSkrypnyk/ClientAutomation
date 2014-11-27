@@ -1,8 +1,6 @@
 package musicqubed.tests.authentication;
 
-import musicqubed.core.XMLBuilder;
-import musicqubed.core.XMLConverter;
-import musicqubed.core.XMLParser;
+import musicqubed.data.XMLConverter;
 import musicqubed.data.FurryDataProvider;
 import musicqubed.templates.EmptyTest;
 import org.testng.annotations.Test;

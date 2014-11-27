@@ -1,11 +1,11 @@
-package musicqubed.core;
+package musicqubed.data;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by ars on 11/26/14.
@@ -55,7 +55,7 @@ public class XMLConverter {
 
                 String parameters = line.substring(line.indexOf("{") + 1);
                 do {
-                    if (parameters.indexOf(",") == -1)
+                    if (!parameters.contains(","))
                         parameter = parameters;
                     else {
                         parameter = parameters.substring(0, parameters.indexOf(","));
@@ -66,7 +66,7 @@ public class XMLConverter {
                     xmlBuilder
                             .createChildElement(key, value);
 
-                } while (parameter != parameters);
+                } while (!Objects.equals(parameter, parameters));
                 xmlBuilder
                         .returnToParentElement();
             }

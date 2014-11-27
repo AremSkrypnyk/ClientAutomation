@@ -1,4 +1,4 @@
-package musicqubed.core;
+package musicqubed.data;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -27,9 +27,9 @@ public class XMLBuilder {
 
     public XMLBuilder(String name) {
         try {
-            this.docFactory = DocumentBuilderFactory.newInstance();
-            this.docBuilder = docFactory.newDocumentBuilder();
-            this.doc = docBuilder.newDocument();
+            docFactory = DocumentBuilderFactory.newInstance();
+            docBuilder = docFactory.newDocumentBuilder();
+            doc = docBuilder.newDocument();
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class XMLBuilder {
     public XMLBuilder createParentElement(String tagName){
         Element tag = doc.createElement(tagName);
         rootElement.appendChild(tag);
-        this.rootElement = tag;
+        rootElement = tag;
         return this;
     }
 
@@ -53,7 +53,7 @@ public class XMLBuilder {
         tag.setAttributeNode(attr);
 
         rootElement.appendChild(tag);
-        this.rootElement = tag;
+        rootElement = tag;
         return this;
     }
 
@@ -72,7 +72,7 @@ public class XMLBuilder {
 
     public XMLBuilder returnToParentElement(){
         Node parentNode = rootElement.getParentNode();
-        this.rootElement = parentNode;
+        rootElement = parentNode;
         return this;
     }
 
