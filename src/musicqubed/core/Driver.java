@@ -107,9 +107,9 @@ public class Driver {
         iosCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
         iosCapabilities.setCapability(MobileCapabilityType.APP, APP_BUNDLE_ID);
         if (Boolean.parseBoolean(System.getProperty("test.resetApp")))
-            iosCapabilities.setCapability("noReset", true);
-        else
             iosCapabilities.setCapability("fullReset", true);
+        else
+            iosCapabilities.setCapability("noReset", true);
         try {
             iosDriver =  new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), iosCapabilities);
         } catch (MalformedURLException e) {
@@ -130,9 +130,9 @@ public class Driver {
         androidCapabilities.setCapability(MobileCapabilityType.APP_PACKAGE, APP_PACKAGE);
         androidCapabilities.setCapability(MobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
         if (Boolean.parseBoolean(System.getProperty("test.resetApp")))
-            androidCapabilities.setCapability("noReset", true);
-        else
             androidCapabilities.setCapability("fullReset", true);
+        else
+            androidCapabilities.setCapability("noReset", true);
         try {
             androidDriver =  new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), androidCapabilities);
         } catch (MalformedURLException e) {
@@ -155,9 +155,9 @@ public class Driver {
         selendroidCapabilities.setCapability("appPackage", APP_PACKAGE);
         selendroidCapabilities.setCapability("appActivity", APP_ACTIVITY);
         if (Boolean.parseBoolean(System.getProperty("test.resetApp")))
-            selendroidCapabilities.setCapability("noReset", true);
-        else
             selendroidCapabilities.setCapability("fullReset", true);
+        else
+            selendroidCapabilities.setCapability("noReset", true);
         try {
             selendroidDriver = new SwipeableWebDriver(new URL("http://localhost:4723/wd/hub"), selendroidCapabilities);
         } catch (MalformedURLException e) {

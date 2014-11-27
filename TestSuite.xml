@@ -3,7 +3,8 @@
 <suite name="MTV test suite" verbose="2">
   <test name="MTV test" thread-count="1" parallel="classes">
     <classes>
-        <class name="musicqubed.tests.authentication.TestsDataProvider"/>
+        <!--<class name="musicqubed.tests.authentication.TestsDataProvider"/>-->
+        <class name="musicqubed.tests.authentication.LoginWithFacebook"/>
     </classes>
   </test>
 </suite> 

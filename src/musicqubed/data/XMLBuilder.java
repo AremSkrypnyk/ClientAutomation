@@ -38,7 +38,7 @@ public class XMLBuilder {
         doc.appendChild(rootElement);
     }
 
-    public XMLBuilder(FlurryData.Tags name) {
+    public XMLBuilder(FlurryData.Tag name) {
         try {
             docFactory = DocumentBuilderFactory.newInstance();
             docBuilder = docFactory.newDocumentBuilder();
@@ -58,7 +58,7 @@ public class XMLBuilder {
         return this;
     }
 
-    public XMLBuilder createParentElement(FlurryData.Tags tagName){
+    public XMLBuilder createParentElement(FlurryData.Tag tagName){
         Element tag = doc.createElement(tagName.toString());
         rootElement.appendChild(tag);
         rootElement = tag;
@@ -77,7 +77,7 @@ public class XMLBuilder {
         return this;
     }
 
-    public XMLBuilder createParentElement(FlurryData.Tags tagName, int id){
+    public XMLBuilder createParentElement(FlurryData.Tag tagName, int id){
         Element tag = doc.createElement(tagName.toString());
 
         Attr attr = doc.createAttribute("id");
@@ -95,7 +95,7 @@ public class XMLBuilder {
         return this;
     }
 
-    public XMLBuilder createChildElement(FlurryData.Tags tagName){
+    public XMLBuilder createChildElement(FlurryData.Tag tagName){
         Element tag = doc.createElement(tagName.toString());
         rootElement.appendChild(tag);
         return this;
@@ -108,14 +108,14 @@ public class XMLBuilder {
         return this;
     }
 
-    public XMLBuilder createChildElement(FlurryData.Parameters tagName, FlurryData.Events tagValue){
+    public XMLBuilder createChildElement(FlurryData.Parameter tagName, FlurryData.Event tagValue){
         Element tag = doc.createElement(tagName.toString());
         tag.appendChild(doc.createTextNode(tagValue.toString()));
         rootElement.appendChild(tag);
         return this;
     }
 
-    public XMLBuilder createChildElement(FlurryData.Parameters tagName, String tagValue){
+    public XMLBuilder createChildElement(FlurryData.Parameter tagName, String tagValue){
         Element tag = doc.createElement(tagName.toString());
         tag.appendChild(doc.createTextNode(tagValue));
         rootElement.appendChild(tag);

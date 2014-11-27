@@ -1,6 +1,7 @@
 package musicqubed.tests.authentication;
 
 import musicqubed.core.EventLogger;
+import musicqubed.data.FlurryData;
 import musicqubed.data.XMLConverter;
 import musicqubed.data.FurryDataProvider;
 import musicqubed.templates.EmptyTest;
@@ -21,6 +22,14 @@ public class TestsDataProvider extends EmptyTest {
 
         EventLogger.FL_FACEBOOK_STARTED();
         EventLogger.FL_FACEBOOK_SUCCESS();
+        EventLogger.FL_FACEBOOK_FAILED(FlurryData.ErrorMessage.CANCELLED);
+        EventLogger.FL_FACEBOOK_FAILED(FlurryData.ErrorMessage.NOT_COMPLETED);
+
+        EventLogger.FL_GOOGLE_PLUS_STARTED();
+        EventLogger.FL_GOOGLE_PLUS_SUCCESS();
+        EventLogger.FL_GOOGLE_PLUS_FAILED(FlurryData.ErrorMessage.CANCELLED);
+        EventLogger.FL_GOOGLE_PLUS_FAILED(FlurryData.ErrorMessage.NOT_COMPLETED);
+
         /*XMLConverter xmlConverter = new XMLConverter("out.txt");
         xmlConverter.convertToXml("out.xml");
 

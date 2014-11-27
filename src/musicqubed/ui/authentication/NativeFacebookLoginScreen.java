@@ -1,6 +1,7 @@
 package musicqubed.ui.authentication;
 
 import musicqubed.core.Driver;
+import musicqubed.core.EventLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -18,7 +19,7 @@ public class NativeFacebookLoginScreen {
     private String password;
 
     public NativeFacebookLoginScreen() {
-        this.username = System.getProperty("test.login");
+        this.username = System.getProperty("test.username");
         this.password = System.getProperty("test.password");
     }
 
@@ -55,6 +56,7 @@ public class NativeFacebookLoginScreen {
     private void tapOnLoginButton(){
         WebElement loginButton = Driver.findElement(LOGIN_BUTTON_LOCATOR);
         loginButton.click();
+        EventLogger.FL_FACEBOOK_SUCCESS();
     }
 
 

@@ -8,23 +8,34 @@ import java.util.Map;
  */
 public class FlurryData {
 
-    public enum Tags {
+    public enum Tag {
         Flurry,
         Device,
         Events,
         Event
     }
 
-    public enum Events {
+    public enum Event {
         FL_FACEBOOK_STARTED,
-        FL_FACEBOOK_SUCCESS
+        FL_FACEBOOK_SUCCESS,
+        FL_FACEBOOK_FAILED,
+
+        FL_GOOGLE_PLUS_STARTED,
+        FL_GOOGLE_PLUS_SUCCESS,
+        FL_GOOGLE_PLUS_FAILED
     }
 
-    public enum Parameters {
+    public enum Parameter {
         title,
         username,
         time_stamp,
-        connectivity
+        connectivity,
+        error
+    }
+
+    public enum ErrorMessage {
+        CANCELLED,
+        NOT_COMPLETED
     }
 
 }
