@@ -38,8 +38,28 @@ public class XMLBuilder {
         doc.appendChild(rootElement);
     }
 
+    public XMLBuilder(FlurryData.Tags name) {
+        try {
+            docFactory = DocumentBuilderFactory.newInstance();
+            docBuilder = docFactory.newDocumentBuilder();
+            doc = docBuilder.newDocument();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        rootElement = doc.createElement(name.toString());
+        doc.appendChild(rootElement);
+    }
+
     public XMLBuilder createParentElement(String tagName){
         Element tag = doc.createElement(tagName);
+        rootElement.appendChild(tag);
+        rootElement = tag;
+        return this;
+    }
+
+    public XMLBuilder createParentElement(FlurryData.Tags tagName){
+        Element tag = doc.createElement(tagName.toString());
         rootElement.appendChild(tag);
         rootElement = tag;
         return this;
@@ -57,14 +77,46 @@ public class XMLBuilder {
         return this;
     }
 
+    public XMLBuilder createParentElement(FlurryData.Tags tagName, int id){
+        Element tag = doc.createElement(tagName.toString());
+
+        Attr attr = doc.createAttribute("id");
+        attr.setValue(id + "");
+        tag.setAttributeNode(attr);
+
+        rootElement.appendChild(tag);
+        rootElement = tag;
+        return this;
+    }
+
     public XMLBuilder createChildElement(String tagName){
         Element tag = doc.createElement(tagName);
         rootElement.appendChild(tag);
         return this;
     }
 
+    public XMLBuilder createChildElement(FlurryData.Tags tagName){
+        Element tag = doc.createElement(tagName.toString());
+        rootElement.appendChild(tag);
+        return this;
+    }
+
     public XMLBuilder createChildElement(String tagName, String tagValue){
         Element tag = doc.createElement(tagName);
+        tag.appendChild(doc.createTextNode(tagValue));
+        rootElement.appendChild(tag);
+        return this;
+    }
+
+    public XMLBuilder createChildElement(FlurryData.Parameters tagName, FlurryData.Events tagValue){
+        Element tag = doc.createElement(tagName.toString());
+        tag.appendChild(doc.createTextNode(tagValue.toString()));
+        rootElement.appendChild(tag);
+        return this;
+    }
+
+    public XMLBuilder createChildElement(FlurryData.Parameters tagName, String tagValue){
+        Element tag = doc.createElement(tagName.toString());
         tag.appendChild(doc.createTextNode(tagValue));
         rootElement.appendChild(tag);
         return this;
@@ -88,11 +140,15 @@ public class XMLBuilder {
         }
     }
 
-    public void buildToConsole() throws TransformerException {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(System.out);
-        transformer.transform(source, result);
+    public void buildToConsole(){
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(System.out);
+            transformer.transform(source, result);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -22,7 +22,7 @@ public class TestListener extends TestListenerAdapter {
             "appPath",
             "device",
             "udid",
-            "login",
+            "username",
             "password",
             "timeout",
             "minApiLevel",
@@ -40,11 +40,13 @@ public class TestListener extends TestListenerAdapter {
         tc.getSuite().getXmlSuite().setConfigFailurePolicy(XmlSuite.CONTINUE);
 
         Logger.init(tc.getSuite().getName());
+        EventLogger.init();
     }
 
     @Override
     public void onTestSuccess(ITestResult tr) {
         Logger.logMessage("Test [" + Logger.getTestName() + "] has passed within [" + StringHelper.durationToTimeStr(tr.getEndMillis() - tr.getStartMillis()) + "].");
+        EventLogger.saveSession();
     }
 
     @Override

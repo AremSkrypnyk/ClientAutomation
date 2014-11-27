@@ -10,8 +10,7 @@ import org.testng.annotations.Listeners;
  * Created by ars on 11/18/14.
  */
 
-@Listeners(TestListener.class)
-public class BaseTest {
+public class BaseTest extends EmptyTest {
 
     @BeforeMethod
     public void init(){

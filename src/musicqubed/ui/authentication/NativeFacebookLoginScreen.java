@@ -2,6 +2,7 @@ package musicqubed.ui.authentication;
 
 import musicqubed.core.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * Created by ars on 11/18/14.
@@ -17,6 +18,8 @@ public class NativeFacebookLoginScreen {
     private String password;
 
     public NativeFacebookLoginScreen() {
+        this.username = System.getProperty("test.login");
+        this.password = System.getProperty("test.password");
     }
 
     public NativeFacebookLoginScreen(String username, String password) {
@@ -29,10 +32,30 @@ public class NativeFacebookLoginScreen {
     }
 
     public void init(){
-        Driver.findElement(EMAIL_FIELD_LOCATOR).clear();
-        Driver.findElement(EMAIL_FIELD_LOCATOR).sendKeys(username);
-        Driver.findElement(FACEBOOK_LOGO_LOCATOR).click();
-        Driver.findElement(PASSWORD_FIELD_LOCATOR).sendKeys(password);
-        Driver.findElement(LOGIN_BUTTON_LOCATOR).click();
+        setLoginField();
+        setPasswordField();
+        tapOnLoginButton();
     }
+
+    private NativeFacebookLoginScreen setLoginField(){
+        WebElement loginField = Driver.findElement(EMAIL_FIELD_LOCATOR);
+        WebElement facebookLogo = Driver.findElement(FACEBOOK_LOGO_LOCATOR);
+        loginField.clear();
+        loginField.sendKeys(username);
+        facebookLogo.click();
+        return this;
+    }
+
+    private NativeFacebookLoginScreen setPasswordField(){
+        WebElement passwordField = Driver.findElement(PASSWORD_FIELD_LOCATOR);
+        passwordField.sendKeys(password);
+        return this;
+    }
+
+    private void tapOnLoginButton(){
+        WebElement loginButton = Driver.findElement(LOGIN_BUTTON_LOCATOR);
+        loginButton.click();
+    }
+
+
 }

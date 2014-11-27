@@ -1,5 +1,6 @@
 package musicqubed.tests.authentication;
 
+import musicqubed.core.EventLogger;
 import musicqubed.data.XMLConverter;
 import musicqubed.data.FurryDataProvider;
 import musicqubed.templates.EmptyTest;
@@ -13,14 +14,19 @@ import java.io.IOException;
 /**
  * Created by ars on 11/25/14.
  */
-public class TeseDataProvider extends EmptyTest {
+public class TestsDataProvider extends EmptyTest {
 
     @Test
     public void getDataForFurry() throws ParserConfigurationException, TransformerException, IOException, SAXException {
-        XMLConverter xmlConverter = new XMLConverter("out.txt");
+
+        EventLogger.FL_FACEBOOK_STARTED();
+        EventLogger.FL_FACEBOOK_SUCCESS();
+        /*XMLConverter xmlConverter = new XMLConverter("out.txt");
         xmlConverter.convertToXml("out.xml");
 
         FurryDataProvider furryDataProvider = new FurryDataProvider();
+        */
+
         /*XMLBuilder xmlBuilder = new XMLBuilder("Flurry");
         xmlBuilder
                 .createParentElement("Device")
